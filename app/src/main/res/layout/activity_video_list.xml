@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:gravity="left|top"
-        android:hint="用户链接"
+        android:hint="用户链接。例子：https://www.iesdouyin.com/share/user/109864890252"
         android:minHeight="60dp"
         android:textSize="12sp" />
 

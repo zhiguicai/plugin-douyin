@@ -1,5 +1,6 @@
 package com.hb.douyinplugin
 
+import android.app.ProgressDialog
 import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -26,6 +27,8 @@ import java.util.concurrent.TimeUnit
  */
 class VideoListActivity : AppCompatActivity() {
 
+    lateinit var dialog: ProgressDialog
+
     lateinit var adapter: VideoListAdapter
 
     val dataList = arrayListOf<DataEntity.AwemeListBean>()
@@ -39,6 +42,9 @@ class VideoListActivity : AppCompatActivity() {
     }
 
     private fun initView() {
+        dialog = ProgressDialog(this)
+
+        et_user_link.setText("https://www.iesdouyin.com/share/user/109864890252")
 
         recyclerview.layoutManager = LinearLayoutManager(this)
 
@@ -58,6 +64,7 @@ class VideoListActivity : AppCompatActivity() {
                 val string = et_user_link.text.toString().trim()
                 if (TextUtils.isEmpty(string)) return
                 analysisInput(string)
+                showProgressDialog()
             }
         })
 
@@ -145,6 +152,7 @@ class VideoListActivity : AppCompatActivity() {
             override fun onFailure(call: Call, e: IOException) {
                 e.printStackTrace()
                 Log.d("hb_", "请求失败了：" + e.message)
+                dialog?.dismiss()
             }
 
             @Throws(IOException::class)
@@ -164,6 +172,7 @@ class VideoListActivity : AppCompatActivity() {
                     Log.d("hb_", "视频列表：" + JSON.toJSONString(aweme_list))
 
                     runOnUiThread({
+                        dialog?.dismiss()
                         dataList.clear()
                         dataList.addAll(aweme_list)
                         adapter.notifyDataSetChanged()
@@ -178,5 +187,12 @@ class VideoListActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    private fun showProgressDialog() {
+        dialog.setTitle("提示")
+        dialog.setMessage("正在请求列表...")
+        dialog.setCanceledOnTouchOutside(false)
+        dialog.show()
     }
 }
