@@ -52,7 +52,7 @@ public class IPCService extends Service {
         Map<String, Object> map = new HashMap<>();
         map.put("msg", "IPC-已断开");
         DefaultEventMessage eventMessage = new DefaultEventMessage(JSON.toJSONString(map));
-        EventBus.getDefault().postSticky(eventMessage);
+        EventBus.getDefault().post(eventMessage);
         Log.i(TAG, "ipc service onDestroy!");
         EventBus.getDefault().unregister(this);
         super.onDestroy();

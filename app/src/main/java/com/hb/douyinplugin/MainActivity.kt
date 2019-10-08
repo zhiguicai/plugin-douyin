@@ -135,7 +135,7 @@ class MainActivity : AppCompatActivity() {
                 val input = JSONObject(inputJson)
                 input.put("action", type)
                 val eventMessage = DefaultEventMessage(input.toString())
-                EventBus.getDefault().postSticky(eventMessage)
+                EventBus.getDefault().post(eventMessage)
                 Toast.makeText(this@MainActivity, "提交完成", Toast.LENGTH_SHORT).show()
             } catch (e: Exception) {
                 Toast.makeText(this@MainActivity, "输入格式不正确", Toast.LENGTH_SHORT).show()
