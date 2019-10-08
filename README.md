@@ -1,5 +1,5 @@
 # plugin-douyin
-基于抖音的Xposed插件
+基于抖音v750版本的Xposed插件
 
 ### 执行动作的数据格式
 
