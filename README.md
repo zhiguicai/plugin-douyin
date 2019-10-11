@@ -62,6 +62,27 @@
     "name":"杭州之声",
     "desc":"fm898989"
 	}
+	
+	
+####	//手机号获取抖音信息
+
+     {
+    "mobiles":
+      [
+        {
+            "name":"**",
+            "phoneNumber":[
+                "180****0011"
+            ]
+        },
+        {
+            "name":"**",
+            "phoneNumber":[
+                "170****0011"
+            ]
+        }
+      ]
+    }
   
   
 #### 注意：需要在每个JSON里面添加对应的action;
@@ -84,3 +105,12 @@
 #### 获取用户列表：
     粘贴用户分享链接到输入框，点击加载，等待加载完成后数据列表会自动填充到下发list;加载过程可能有些长。
     例子：https://www.iesdouyin.com/share/user/109864890252
+    
+    
+#### 手机号获取抖音信息：
+    返回结果在【IPCService】的 【handleFromDouyinMessage】中；
+    
+     case 1001://TODO 手机号转换为抖音信息后的数据
+            String douyinUserJson = jsonMsg;
+            XLog.d("hb_pluginapp", douyinUserJson);
+            break;
