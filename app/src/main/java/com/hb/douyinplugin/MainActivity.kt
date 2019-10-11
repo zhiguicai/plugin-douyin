@@ -97,6 +97,25 @@ class MainActivity : AppCompatActivity() {
                                 "    \"desc\":\"fm898989\"\n" +
                                 "}")
                     }
+                    R.id.rb_mobile -> {
+                        Toast.makeText(this@MainActivity, "请填入正确的手机号后再试", Toast.LENGTH_SHORT).show()
+                        et_json.setText("{\n" +
+                                "    \"mobiles\":[\n" +
+                                "        {\n" +
+                                "            \"name\":\"测试1\",\n" +
+                                "            \"phoneNumber\":[\n" +
+                                "                \"17600110011\"\n" +
+                                "            ]\n" +
+                                "        },\n" +
+                                "        {\n" +
+                                "            \"name\":\"测试2\",\n" +
+                                "            \"phoneNumber\":[\n" +
+                                "                \"17600110011\"\n" +
+                                "            ]\n" +
+                                "        }\n" +
+                                "    ]\n" +
+                                "}")
+                    }
                 }
             }
 
@@ -124,6 +143,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.rb_card -> {
                     type = "card"
                 }
+                R.id.rb_mobile -> {
+                    type = "transform-mobile"
+                }
             }
 
             if (TextUtils.isEmpty(type)) {
@@ -140,7 +162,6 @@ class MainActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 Toast.makeText(this@MainActivity, "输入格式不正确", Toast.LENGTH_SHORT).show()
             }
-
 
         })
     }

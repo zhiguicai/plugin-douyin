@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.hb.douyinplugin.eventbus.DefaultEventMessage;
+import com.hb.douyinplugin.utils.XLog;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -87,6 +88,13 @@ public class IPCService extends Service {
                         messengerMap.clear();
                     }
                     messengerMap.put(MSG_WHAT_CHANNEL_DY, messenger);
+                    break;
+                case -1://处理出现错误时的返回信息
+                    //TODO 暂不处理
+                    break;
+                case 1001://TODO 手机号转换为抖音信息后的数据
+                    String douyinUserJson = jsonMsg;
+                    XLog.d("hb_pluginapp", douyinUserJson);
                     break;
                 default:
                     break;

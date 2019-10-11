@@ -30,18 +30,24 @@ class DouyinInit {
 
                         Toast.makeText(context, "抖音-Plugin SUCCESS!", Toast.LENGTH_SHORT).show()
 
+                        Mobile2UserHook.addHookQueryContactsFriends()
+
                         //TODO test
 
-                       // LoadFansImpl.queryContacts()
+
+//                        HttpLogger.hook()
 
 
-                       // CommentHook.hookComment()
+                        // LoadFansImpl.queryContacts()
+
+
+                        // CommentHook.hookComment()
 //                        CommentHook.doComment("6740116735640292616","感觉自己的北漂生涯快结束了")
 
                         //FeedHook.hookFeed()
 //                        FeedHook.doFeed("6740116735640292616");
 
-                       // MessageHook.hookSendPhoto();
+                        // MessageHook.hookSendPhoto();
 
 //                        MessageHook.sendImage("3768748035023923", "/storage/emulated/0/FreeVideo/FreeVideo_share_image.jpg")
 

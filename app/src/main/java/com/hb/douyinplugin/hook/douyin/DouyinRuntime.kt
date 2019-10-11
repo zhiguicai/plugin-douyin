@@ -8,6 +8,9 @@ import android.os.*
 import android.text.TextUtils
 import android.util.Log
 import com.alibaba.fastjson.JSON
+import com.google.gson.Gson
+import com.hb.douyinplugin.hook.douyin.entity.MobileEntity
+import com.hb.douyinplugin.utils.XLog
 import org.json.JSONObject
 import java.util.concurrent.Executors
 
@@ -171,7 +174,7 @@ class DouyinRuntime private constructor() {
                             postMessageToPlugin(JSON.toJSONString(params), -1)
                             return
                         }
-                        CommentHook.doComment(vid,commentText)
+                        CommentHook.doComment(vid, commentText)
                     }
                     "img" -> {
                         val toUID = jsonObject.optString("toUID", "")
@@ -250,6 +253,18 @@ class DouyinRuntime private constructor() {
                                 name, desc,
                                 avatarUri, avatarUrl
                         )
+                    }
+                    "transform-mobile" -> {
+                        val mobilesJson = jsonObject.optJSONArray("mobiles")
+                        val mobileList = JSON.parseArray(mobilesJson.toString(), MobileEntity::class.java)
+                        XLog.i(DouyinRuntime.LOG_TAG, "接收：" + Gson().toJson(mobileList))
+                        if (mobileList.isNotEmpty()) {
+                            Mobile2UserHook.mobileToDouyinUser(mobileList)
+                        } else {
+                            val params = hashMapOf<String, String>()
+                            params.put("error", "数据错误")
+                            postMessageToPlugin(JSON.toJSONString(params), -1)
+                        }
                     }
                 }
             }
